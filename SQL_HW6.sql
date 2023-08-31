@@ -6,7 +6,7 @@ USE lesson_4;
 
 DROP TABLE IF EXISTS users_old;
 CREATE TABLE users_old (
-	id INT PRIMARY KEY, 
+    id INT PRIMARY KEY, 
     firstname VARCHAR(50),
     lastname VARCHAR(50),
     email VARCHAR(120) UNIQUE
@@ -23,15 +23,15 @@ BEGIN
 	SET id_move_in_users = EXISTS(SELECT id FROM users WHERE id = id_move);
 
 	IF id_move_in_users = 1 THEN
-        INSERT INTO users_old (id, firstname, lastname, email)
+        	INSERT INTO users_old (id, firstname, lastname, email)
 		SELECT id, firstname, lastname, email
-			FROM users
-        WHERE id = id_move;
-        SET result = "User moved!";
+		  FROM users
+        	WHERE id = id_move;
+        	SET result = "User moved!";
 		COMMIT;
 	ELSE
 		SET result = "User not moved!";
-        ROLLBACK;
+        	ROLLBACK;
 	END IF;
 END//
 DELIMITER ;
@@ -74,7 +74,7 @@ SELECT hello() AS "Приветствие";
 
 DROP TABLE IF EXISTS archive;
 CREATE TABLE archive (
-	time_add DATETIME, 
+    time_add DATETIME, 
     table_name VARCHAR(50),
     id INT
 );
